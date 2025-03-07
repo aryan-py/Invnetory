@@ -199,10 +199,10 @@ function App() {
     setStudents(prev => [...prev, { ...newStudent, id: newId }]);
   };
 
-  // Add this function to calculate issued items for each inventory item
+  // Update this function to only count unreturned items
   const getIssuedQuantity = (itemId) => {
     return issuanceHistory.reduce((total, issue) => {
-      if (issue.itemId === itemId) {
+      if (issue.itemId === itemId && issue.status !== 'Returned') {
         return total + issue.quantity;
       }
       return total;
